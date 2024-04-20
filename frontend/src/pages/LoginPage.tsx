@@ -28,7 +28,6 @@ const LoginPage = () => {
         togglePasswordVisibility={togglePasswordVisibility}
       >
         <input type='email' value={email || ''} onChange={(e) => setEmail(e.target.value)} placeholder='Почта' />
-
         <input type={showPassword ? 'text' : 'password'} value={password || ''} onChange={(e) => setPassword(e.target.value)} placeholder='Пароль' />
       </Form>
     </Section>

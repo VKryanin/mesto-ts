@@ -6,6 +6,7 @@ interface FormProps {
   title: string;
   buttonText: string;
   inputType: string[];
+  togglePasswordVisibility: () => void;
 }
 
 export default FormProps;

@@ -13,23 +13,6 @@ export const FormContainer = styled.form`
     color: #fff;
     text-align: center;
   }
-
-  button {
-    max-width: 100px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 5px;
-    font-size: 18px;
-    background: rgb(255, 255, 255);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: rgba(255, 255, 255, .6)
-    }
-  }
 `;
 
 export const InputStyle = styled.div`
@@ -58,7 +41,6 @@ justify-content: space-around;
 &:focus-within {
   border-bottom: 1px solid rgba(255, 255, 255, .6);
 }
-
 `
 
 export const StyledUserOutlined = styled(UserOutlined)`

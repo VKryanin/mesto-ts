@@ -7,15 +7,12 @@ import {
   StyledEyeTwoTone,
   StyledEyeInvisibleOutlined
 } from '../../ui/Form';
+import Button from '../Button/Button';
 
 import FormProps from '../../interfaces/FormProps';
 
-interface ExtendedFormProps extends FormProps {
-  togglePasswordVisibility: () => void;
-}
-
 // Компонент формы
-const Form = ({ children, onSubmit, title, buttonText, inputType, togglePasswordVisibility }: ExtendedFormProps) => {
+const Form = ({ children, onSubmit, title, buttonText, inputType, togglePasswordVisibility }: FormProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibilityLocal = () => {
@@ -70,7 +67,7 @@ const Form = ({ children, onSubmit, title, buttonText, inputType, togglePassword
           {getIcon(inputType[index], child)}
         </React.Fragment>
       ))}
-      <button type="submit">{buttonText}</button>
+      <Button type="submit" as='button' color='#000' background={true}>{buttonText}</Button>
     </FormContainer>
   );
 };
