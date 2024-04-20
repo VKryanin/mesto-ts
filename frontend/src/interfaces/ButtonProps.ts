@@ -1,4 +1,4 @@
-import { ComponentProps, ElementType, CSSProperties } from "react";
+import { ComponentProps, ElementType } from "react";
 
 type ButtonOwnProps<E extends ElementType = ElementType> = {
   children: string;

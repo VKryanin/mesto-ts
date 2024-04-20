@@ -34,8 +34,6 @@ function Button<E extends ElementType = typeof defaultElement>({
   ...otherProps
 }: ButtonProps<E>) {
 
-  const TagName = as || defaultElement;
-  console.log(background, TagName);
   return (
     <StyledButton background={background} {...otherProps}>{children}</StyledButton>
   );

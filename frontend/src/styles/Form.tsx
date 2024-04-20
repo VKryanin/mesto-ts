@@ -15,7 +15,7 @@ export const FormContainer = styled.form`
   }
 `;
 
-export const InputStyle = styled.div`
+export const InputWrapper = styled.div`
 width: 100%;
 background: transparent;
 border-bottom: 1px solid #fff;

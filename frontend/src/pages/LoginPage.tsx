@@ -1,7 +1,8 @@
 import { memo, useState } from 'react';
 
-import Section from "../ui/Section"
-import Form from "../components/Form/Form"
+import Section from "../styles/Section"
+import Form from "../components/Components/Form"
+import Input from '../components/Components/Input';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
+    console.log(1)
     setShowPassword(!showPassword);
   };
 
@@ -25,10 +27,24 @@ const LoginPage = () => {
         title='Вход'
         buttonText='Войти'
         inputType={['email', 'password']}
-        togglePasswordVisibility={togglePasswordVisibility}
       >
-        <input type='email' value={email || ''} onChange={(e) => setEmail(e.target.value)} placeholder='Почта' />
-        <input type={showPassword ? 'text' : 'password'} value={password || ''} onChange={(e) => setPassword(e.target.value)} placeholder='Пароль' />
+        <Input
+          isForm={true}
+          type='email'
+          placeholder='Email'
+          as='input'
+          value={email || ''}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+        />
+        <Input
+          isForm={true}
+          type={showPassword ? 'password' : 'text'}
+          placeholder='Пароль'
+          as='input'
+          value={password || ''}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+          togglePasswordVisibility={togglePasswordVisibility}
+        />
       </Form>
     </Section>
   )
