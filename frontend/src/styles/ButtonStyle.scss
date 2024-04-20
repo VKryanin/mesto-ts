@@ -1,0 +1,39 @@
+.primary {
+  text-decoration: transparent;
+  font-size: 19px;
+  max-width: 100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5px;
+  font-size: 18px;
+  border: none;
+  color: #000;
+
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, .6);
+  }
+}
+
+.secondary {
+  height: min-content;
+  text-decoration: transparent;
+  display: flex;
+  align-items: center; 
+  font-size: 19px;
+  margin: 0;
+  padding: 0 5px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: rgba(255, 255, 255, .6);
+  }
+}

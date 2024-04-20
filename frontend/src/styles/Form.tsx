@@ -6,12 +6,23 @@ import { UserOutlined, LockOutlined, EyeOutlined, EyeInvisibleOutlined } from '@
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 350px;
   width: 100%;
 
-  h1 {
+  h3 {
     color: #fff;
     text-align: center;
+    font-size: 22px;
+    margin-top: 0;
+  }
+
+  p {
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
   }
 `;
 

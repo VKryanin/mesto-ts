@@ -6,6 +6,8 @@ interface FormProps {
   title: string;
   buttonText: string;
   inputType: string[];
+  sub: string;
+  help: string;
 }
 
 export default FormProps;

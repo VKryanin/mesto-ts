@@ -21,12 +21,14 @@ const LoginPage = () => {
   };
 
   return (
-    <Section width='100%' height='100vh' minHeight='100vh' minWidth='100vw' justifyContent='center' alignItems='center'>
+    <Section width='100%' height='100vh' minHeight='100vh' minWidth='100vw' justifyContent='center' margin='85px 0'>
       <Form
         onSubmit={handleSubmit}
         title='Вход'
         buttonText='Войти'
         inputType={['email', 'password']}
+        sub='Не зарегистрированы?'
+        help='Регистрация'
       >
         <Input
           isForm={true}
