@@ -1,4 +1,4 @@
-import React, { ElementType, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 interface FormProps {
   children: ReactNode;

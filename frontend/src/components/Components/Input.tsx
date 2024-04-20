@@ -1,4 +1,5 @@
-import { ElementType, useState } from "react";
+/* eslint-disable no-mixed-operators */
+import { ElementType } from "react";
 import styled from "styled-components";
 import { InputProps, StyledInputProps } from "../../interfaces/InputProps";
 import { InputWrapper, StyledUserOutlined, StyledLockOutlined, StyledEyeTwoTone, StyledEyeInvisibleOutlined } from "../../styles/Form";
@@ -19,7 +20,6 @@ function Input<E extends ElementType = typeof defaultElement>({
   as,
   ...otherProps
 }: InputProps<E>) {
-
 
   return (
     <InputWrapper>
