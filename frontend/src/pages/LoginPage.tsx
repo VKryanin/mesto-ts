@@ -1,5 +1,6 @@
 import { memo, useState } from 'react';
-
+import { useDispatch } from "react-redux";
+import { addToken } from '../store/userSlice';
 import Section from "../styles/Section"
 import Form from "../components/Components/Form"
 import Input from '../components/Components/Input';
@@ -7,17 +8,16 @@ import Input from '../components/Components/Input';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const [showPassword, setShowPassword] = useState(false);
-
+  const dispatch = useDispatch();
   const togglePasswordVisibility = () => {
-    console.log(1)
     setShowPassword(!showPassword);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Form submitted:', { email, password });
+    e.preventDefault()
+    console.log({ email, password });
+    dispatch(addToken({ email, password }));
   };
 
   return (
