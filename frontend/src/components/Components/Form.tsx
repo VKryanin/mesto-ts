@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
   FormContainer,
 } from '../../styles/Form';
@@ -8,6 +8,7 @@ import FormProps from '../../interfaces/FormProps';
 
 
 const Form = ({ children, onSubmit, title, buttonText, sub, help }: FormProps) => {
+  const location = useLocation();
   return (
     <FormContainer onSubmit={onSubmit}>
       <>
@@ -19,7 +20,7 @@ const Form = ({ children, onSubmit, title, buttonText, sub, help }: FormProps) =
       <p>{sub}
         <Button
           secondary
-          to='/sign-up'
+          to={location.pathname === '/sign-in' ? '/sign-up' : '/sign-in'}
           as={Link}
         >{help}
         </Button>

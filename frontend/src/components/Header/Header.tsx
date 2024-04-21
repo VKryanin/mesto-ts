@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Button from '../Components/Button'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const HeaderDiv = styled.header`
   width:80%;
@@ -26,13 +26,16 @@ display: flex;
 `
 
 const Header = () => {
+  const location = useLocation();
+
   return (
     <HeaderDiv>
       <HeaderLogo>
         <h1>Mesto</h1>
         <h2>Russia</h2>
       </HeaderLogo>
-      <Button secondary as={Link} to='/sign-up'>Регистрация</Button>
+      {location.pathname === '/sign-in' && (<Button secondary as={Link} to='/sign-up'>Регистрация</Button>)}
+      {location.pathname === '/sign-up' && (<Button secondary as={Link} to='/sign-in'>Войти</Button>)}
     </HeaderDiv>
   )
 }

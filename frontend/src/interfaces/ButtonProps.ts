@@ -6,7 +6,6 @@ type ButtonOwnProps<E extends ElementType = ElementType> = {
   secondary?: boolean;
   to?: string;
   as?: E;
-
 }
 
 export type ButtonProps<E extends ElementType> = ButtonOwnProps<E> &
