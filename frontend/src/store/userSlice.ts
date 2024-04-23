@@ -9,6 +9,8 @@ const postHeaders = {
   Accept: "*/*",
 };
 
+
+
 export const getProfile = createAsyncThunk(
   'user/getUser',
   async (_, thunkAPI) => {
