@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import moment from "moment";
 
-const HOST = 'http://localhost:3001/';
+const HOST = 'https://mesto-api.vk-port.dev/';
 
 interface AuthData {
   email: string;
@@ -18,13 +18,20 @@ class Api {
     try {
       const response = await axios.post(`${HOST}signin`, authData,);
       localStorage.setItem('token', response.data.token);
+      this.getProfile()
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log('error: ', error.response?.data.message);
+        console.log('oops, error: ', error.response);
       } else if (error instanceof Error) {
         console.log('error: ', error.message);
       }
     }
+  }
+
+  getProfile = async () => {
+    return await axios(`${HOST}users/me`, {
+      headers: this.postHeaders,
+    }).then((res) => this.getResponseData(res));
   }
 
   getResponseData = (res: AxiosResponse<any>): any => {
