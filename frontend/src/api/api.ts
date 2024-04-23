@@ -16,9 +16,14 @@ class Api {
 
   getToken = async (authData: AuthData): Promise<any> => {
     try {
-      const response = await axios.post(`${HOST}signin`, authData,);
+      const headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      };
+
+      const response = await axios.post(`${HOST}signin`, authData, { headers });
       localStorage.setItem('token', response.data.token);
-      this.getProfile()
+      this.getProfile();
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log('oops, error: ', error.response);
