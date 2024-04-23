@@ -16,13 +16,13 @@ class Api {
 
   getToken = async (authData: AuthData): Promise<any> => {
     try {
-      const response = await axios.post(`${HOST}signin`, authData);
-      localStorage.setItem('token', response.data.token);;
+      const response = await axios.post(`${HOST}signin`, authData,);
+      localStorage.setItem('token', response.data.token);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const { response } = error as AxiosError;
-        console.log(response);
-        return response;
+        console.log('error: ', error.response?.data.message);
+      } else if (error instanceof Error) {
+        console.log('error: ', error.message);
       }
     }
   }
@@ -30,14 +30,14 @@ class Api {
   getResponseData = (res: AxiosResponse<any>): any => {
     console.log(res);
     if (res.status === 200) {
-      return res.data; // Возвращает данные ответа
+      return res.data;
     } else {
       console.log(1);
       console.log(`Request failed with status ${res}`);
     }
   }
 
-  
+
 }
 
 export const api = new Api()
