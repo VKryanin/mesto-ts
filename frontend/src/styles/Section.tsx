@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import SectionProps from '../interfaces/SectionProps';
+import { SectionProps } from '../interfaces/Interface';
 
 const Section = styled.section<SectionProps>`
   width: ${(p) => (p.width ? p.width : '100%')};

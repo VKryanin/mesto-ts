@@ -1,5 +1,5 @@
 import { ElementType } from "react";
-import { ButtonProps } from "../../interfaces/ButtonProps";
+import { ButtonProps } from "../../interfaces/Interface";
 import cn from 'classnames';
 import '../../styles/ButtonStyle.scss'
 

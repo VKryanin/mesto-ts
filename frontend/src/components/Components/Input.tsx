@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-operators */
 import { ElementType } from "react";
 import styled from "styled-components";
-import { InputProps, StyledInputProps } from "../../interfaces/InputProps";
+import { InputProps, StyledInputProps } from "../../interfaces/Interface";
 import { InputWrapper, StyledUserOutlined, StyledLockOutlined, StyledEyeTwoTone, StyledEyeInvisibleOutlined } from "../../styles/Form";
 
 
