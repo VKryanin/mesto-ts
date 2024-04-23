@@ -18,7 +18,7 @@ const getUsers = (req, res, next) => {
 
 const getUserById = (req, res, next) => {
   User.findById(req.params.userId)
-    .orFail(new NotFoundError('User with this ID was not found.'))
+    .orFail(new NotFoundError('Пользователь с этим ID не найден.'))
     .then((user) => res.send({ data: user }))
     .catch((err) => next(err));
 };
@@ -38,7 +38,7 @@ const createUser = (req, res, next) => {
       if (err instanceof ValidationError) {
         next(new IncorrectRequestError(err.message));
       } else if (err.code === 11000) {
-        next(new EmailIsBusyError('User with this email already exists'));
+        next(new EmailIsBusyError('Пользователь с таким email уже существует.'));
       } else {
         next(err);
       }
@@ -59,7 +59,7 @@ const login = (req, res, next) => {
 
 const getInfo = (req, res, next) => {
   User.findById(req.user._id)
-    .orFail(new NotFoundError('User with this ID was not found.'))
+    .orFail(new NotFoundError('Пользователь с этим ID не найден.'))
     .then((userData) => res.send({ data: userData }))
     .catch((err) => {
       next(err);
@@ -69,7 +69,7 @@ const getInfo = (req, res, next) => {
 const updateProfile = (req, res, next) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
-    .orFail(new NotFoundError('User with this ID was not found.'))
+    .orFail(new NotFoundError('Пользователь с этим ID не найден.'))
     .then((updatedProfile) => {
       res.send({ data: updatedProfile });
     })
@@ -85,7 +85,7 @@ const updateProfile = (req, res, next) => {
 const updateAvatar = (req, res, next) => {
   const { avatar } = req.body;
   User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
-    .orFail(new NotFoundError('Incorrected user ID'))
+    .orFail(new NotFoundError('Неправильный ID пользователя '))
     .then((newAvatar) => res.send({ data: newAvatar }))
     .catch((err) => {
       if (err instanceof ValidationError) {

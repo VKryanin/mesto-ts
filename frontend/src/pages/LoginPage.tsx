@@ -1,15 +1,14 @@
 import { memo, useState } from 'react';
-import { useDispatch } from "react-redux";
-import { addToken } from '../store/userSlice';
 import Section from "../styles/Section"
 import Form from "../components/Components/Form"
 import Input from '../components/Components/Input';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+import { api } from '../api/Api';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -17,11 +16,11 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log({ email, password });
-    dispatch(addToken({ email, password }));
+    api.getToken({ email, password })
   };
 
   return (
-    <Section width='100%' height='100vh' minHeight='100vh' minWidth='100vw' justifyContent='center' margin='85px 0'>
+    <Section width='100%' height='100vh' minheight='100vh' minwidth='100vw' justifycontent='center' margin='85px 0'>
       <Form
         onSubmit={handleSubmit}
         title='Вход'

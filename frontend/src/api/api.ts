@@ -1,65 +1,43 @@
-
+import axios, { AxiosResponse, AxiosError } from "axios";
 import moment from "moment";
 
-export const HOST = 'http://localhost:3001';
+const HOST = 'http://localhost:3001/';
 
-interface DataObject {
-  [key: string]: string;
+interface AuthData {
+  email: string;
+  password: string;
 }
 
 class Api {
   postHeaders = {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('ReactToken')}`,
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
   };
 
-  getResponseData = async (res: Response, options: any) => {
-    if (res.ok) {
-      const response = await res.json();
-      localStorage.setItem('ReactToken', response.token);
-      localStorage.setItem(
-        'TokenExpiredDate',
-        (moment().valueOf() + response.expires_in * 1000).toString(),
-      );
-      console.log(123);
-      this.postHeaders = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${response.token}`,
-      };
-      return response;
+  getToken = async (authData: AuthData): Promise<any> => {
+    try {
+      const response = await axios.post(`${HOST}signin`, authData);
+      localStorage.setItem('token', response.data.token);;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const { response } = error as AxiosError;
+        console.log(response);
+        return response;
+      }
+    }
+  }
+
+  getResponseData = (res: AxiosResponse<any>): any => {
+    console.log(res);
+    if (res.status === 200) {
+      return res.data; // Возвращает данные ответа
     } else {
-      return res.text().then((text) => {
-        const errorMessage = JSON.parse(text).message || JSON.parse(text).error;
-        console.error('Error message:', errorMessage);
-      });
+      console.log(1);
+      console.log(`Request failed with status ${res}`);
     }
-  };
+  }
 
-  fetcher = async (path: string, method: string, body?: any, port?: string) => {
-    const options: any = {
-      method: method ?? 'POST',
-      headers: this.postHeaders,
-    };
-
-    if (body) {
-      options.body = JSON.stringify(body);
-    }
-
-    const clonedOptions = { ...options };
-    delete clonedOptions.headers.Authorization;
-    const response = await fetch(`${HOST}${port ?? ''}/${path}`, options);
-    return this.getResponseData(response, clonedOptions);
-  };
-
-  getToken = (data: DataObject) => this.fetcher(`signin`, 'POST', data);
-
-  getMe = () => this.fetcher(`user/me`, 'POST');
-
-  logOut = () => {
-    localStorage.removeItem('ReactToken');
-    localStorage.removeItem('TokenExpiredDate');
-  };
+  
 }
 
-const api = new Api()
-export default api
+export const api = new Api()

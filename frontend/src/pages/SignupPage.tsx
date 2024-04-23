@@ -11,7 +11,6 @@ const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
-    console.log(1)
     setShowPassword(!showPassword);
   };
 
@@ -21,7 +20,7 @@ const SignupPage = () => {
   };
 
   return (
-    <Section width='100%' height='100vh' minHeight='100vh' minWidth='100vw' justifyContent='center' margin='85px 0'>
+    <Section width='100%' height='100vh' minheight='100vh' minwidth='100vw' justifycontent='center' margin='85px 0'>
       <Form
         onSubmit={handleSubmit}
         title='Регистрация'
