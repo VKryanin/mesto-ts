@@ -29,7 +29,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb', {
 app.use(express.json());
 
 const corsOptions = {
-  origin: 'http://localhost:3002',
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
 };
 
