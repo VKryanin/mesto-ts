@@ -2,6 +2,7 @@ import { memo, useState } from 'react';
 import Form from "../../components/Components/Form/Form"
 import Input from '../../components/Components/Input/Input';
 import Header from '../../components/Components/Header/Header';
+import Footer from '../../components/Components/Footer/Footer';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
@@ -20,7 +21,6 @@ const SignupPage = () => {
 
   return (
     <>
-      <Header />
       <Form
         onSubmit={handleSubmit}
         title='Регистрация'

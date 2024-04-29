@@ -8,7 +8,7 @@ import { logout } from '../../../store/userSlice';
 
 const Header = () => {
   const location = useLocation();
-  const { user, token, isLoggedIn } = useAppSelector(({ user }) => user)
+  const { user, isLoggedIn } = useAppSelector(({ user }) => user)
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -18,8 +18,8 @@ const Header = () => {
   return (
     <header className={style.header}>
       <img className={style.headerLogo} src={logo as string} alt='Mesto Russia' />
-      {location.pathname === '/sign-in' && (<Button secondary as={Link} to='/sign-up'>Регистрация</Button>)}
-      {location.pathname === '/sign-up' && (<Button secondary as={Link} to='/sign-in'>Войти</Button>)}
+      {location.pathname === '/sign-in' && (<Button secondary className={style.headerButton} as={Link} to='/sign-up'>Регистрация</Button>)}
+      {location.pathname === '/sign-up' && (<Button secondary className={style.headerButton} as={Link} to='/sign-in'>Войти</Button>)}
       {isLoggedIn &&
         <div className={style.headerAuth}>
           <p>{user.email}</p>

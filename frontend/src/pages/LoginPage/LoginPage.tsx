@@ -5,6 +5,7 @@ import Input from '../../components/Components/Input/Input';
 import { useAppDispatch } from '../../store/hook';
 import { getToken } from '../../store/userSlice';
 import Header from '../../components/Components/Header/Header';
+import Footer from '../../components/Components/Footer/Footer';
 
 
 const LoginPage = () => {
@@ -25,7 +26,6 @@ const LoginPage = () => {
 
   return (
     <>
-      <Header />
       <Form
         onSubmit={onSubmit}
         title='Вход'

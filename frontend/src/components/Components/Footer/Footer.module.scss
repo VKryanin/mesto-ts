@@ -1,0 +1,40 @@
+.footer {
+  margin: 67px auto auto;
+  max-width: 880px;
+  width: 100%;
+  height: 74px;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width:880px) {
+    & {
+      margin: 0;
+      padding: 48px 19px 38px;
+    }
+  }
+
+  @media screen and (max-width:320px) {
+    & {
+      height: 56px;
+    }
+  }
+
+  &Link {
+    text-decoration: none;
+    color: #ffffff;
+    transition: all .3s ease;
+
+    &:hover {
+      color: rgba(255, 255, 255, .6);
+    }
+  }
+
+  &Copyright {
+    margin: 0;
+    padding: 0;
+    color: #545454;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

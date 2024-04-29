@@ -9,16 +9,16 @@ const Cards = () => {
   const { cards } = useAppSelector(({ cards }) => cards);
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    dispatch(getCards(token))
-  },
-    []
-  )
+  // useEffect(() => {
+  //   dispatch(getCards(token))
+  // },
+  //   []
+  // )
 
-  useEffect(() => {
-    console.log(cards);
+  // useEffect(() => {
+  //   console.log(cards);
 
-  }, [cards])
+  // }, [cards])
 
   return (
     <section className={styles.cards}>

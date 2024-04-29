@@ -1,25 +1,23 @@
 import React, { useEffect } from 'react';
-import {
-  Route,
-  Routes,
-  useLocation,
-  Navigate,
-  useNavigate,
-} from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../store/hook';
-import { getProfile, hasToken } from '../store/userSlice';
+import { Navigate, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
+import Main from '../pages/Main/Main';
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignupPage from '../pages/SignupPage/SignupPage';
-import Main from '../pages/Main/Main';
-
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 
+import { useAppDispatch, useAppSelector } from '../store/hook';
+import { getProfile, hasToken } from '../store/userSlice';
+import { getCards } from '../store/cardsSlice';
+
 function App() {
+  const { isLoading } = useAppSelector(({ cards }) => cards);
+  const { isLoggedIn, token } = useAppSelector(({ user }) => user);
   const location = useLocation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate()
-  const { isLoggedIn } = useAppSelector(({ user }) => user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoggedIn && localStorage.getItem('token')) {
@@ -30,17 +28,24 @@ function App() {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getProfile());
+      dispatch(getCards(token))
       navigate('/', { replace: true })
     }
   }, [isLoggedIn]);
+  console.log('location: ', location);
 
   return (
-    <Routes location={location}>
-      <Route path="/" element={isLoggedIn ? <Navigate to='/content' /> : <Navigate to='/sign-in' replace />} />
-      <Route path='/sign-in' element={<LoginPage />} />
-      <Route path='/sign-up' element={<SignupPage />} />
-      <Route path="/content" element={<ProtectedRoute element={<Main />} />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes location={location}>
+        <Route path='/sign-in' element={<LoginPage />} />
+        <Route path='/sign-up' element={<SignupPage />} />
+        <Route path="/" element={<ProtectedRoute element={<Main />} />} />
+        <Route path="/" element={isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" replace />} />
+        <Route path="*" element={<div>404</div> } />
+      </Routes>
+      <Footer />
+    </>
   );
 }
 
