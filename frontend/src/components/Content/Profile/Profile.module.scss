@@ -1,0 +1,161 @@
+.profile {
+  max-width: 880px;
+  margin: 40px auto 31px;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width:880px) {
+    .profile {
+      margin: 0;
+      padding: 40px 19px 0;
+    }
+  }
+
+  @media screen and (max-width:693px) {
+    .profile {
+      flex-direction: column;
+    }
+  }
+
+  &Container {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width:420px) {
+      & {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &Avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 30px;
+    object-fit: cover;
+
+    @media screen and (max-width:420px) {
+      & {
+        margin: 0;
+      }
+    }
+  }
+
+  &AvatarEdit {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+
+    & :hover {
+      opacity: 0.8;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.9) url('../../../images/edit_avatar.svg') no-repeat center;
+    }
+  }
+
+  &Info {
+    max-width: 336px;
+    display: grid;
+    grid-template-columns: 294px 24px;
+    column-gap: 18px;
+    grid-template-rows: 2;
+    row-gap: 16px;
+
+    @media screen and (max-width:693px) {
+      & {
+        margin-top: 22px;
+        grid-template-columns: 189px 18px;
+        column-gap: 10px;
+        grid-template-rows: 2;
+        row-gap: 14px;
+        justify-content: center;
+      }
+    }
+  }
+
+  &Title {
+    margin: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 48px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    @media screen and (max-width:693px) {
+      & {
+        font-size: 27px;
+        line-height: 33px;
+        text-align: center;
+      }
+    }
+  }
+
+  &Subtitle {
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    @media screen and (max-width:693px) {
+      & {
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+      }
+    }
+  }
+
+  &Button {
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    align-self: center;
+    cursor: pointer;
+    transition: opacity .5s ease-in-out;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
+
+  &ButtonEdit {
+    width: 24px;
+    height: 24px;
+    background-image: url(../../../images/pensil.svg);
+    border: 1px solid #fff;
+
+    @media screen and (max-width:420px) {
+      & {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  &ButtonAdd {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #fff;
+    background-image: url(../../../images/plus.svg);
+
+    @media screen and (max-width:693px) {
+      & {
+        width: 100%;
+        margin-top: 36px;
+      }
+    }
+  }
+}

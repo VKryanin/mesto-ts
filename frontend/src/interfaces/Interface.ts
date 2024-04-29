@@ -70,3 +70,7 @@ export type AuthData = {
 
 export type handleSubmitType = (e: React.FormEvent<HTMLFormElement>, authData: AuthData) => void;
 
+export interface ProtectedRouteProps {
+  element: React.ComponentType;
+}
+

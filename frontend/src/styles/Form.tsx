@@ -4,17 +4,15 @@ import styled from 'styled-components';
 import { UserOutlined, LockOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 export const FormContainer = styled.form`
+  max-width: 358px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 350px;
-  width: 100%;
+  justify-content: center;
+  margin: 0 auto;
 
   h3 {
-    color: #fff;
     text-align: center;
-    font-size: 22px;
-    margin-top: 0;
+    margin: 60px auto 50px;
   }
 
   p {

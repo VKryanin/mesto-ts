@@ -1,50 +1,46 @@
 import React, { useEffect } from 'react';
-import { Route, Routes, useLocation, Navigate, useNavigate } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { useAppSelector } from '../store/hook';
+import {
+  Route,
+  Routes,
+  useLocation,
+  Navigate,
+  useNavigate,
+} from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../store/hook';
+import { getProfile, hasToken } from '../store/userSlice';
 
 import LoginPage from '../pages/LoginPage';
-import Header from './Header/Header';
 import SignupPage from '../pages/SignupPage';
-import Content from './Content/Content';
-import '../styles/App.scss';
+import Main from '../pages/Main';
 
+import ProtectedRoute from './Components/ProtectedRoute';
 
 function App() {
-  const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn } = useAppSelector(({ token }) => token)
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate()
+  const { isLoggedIn } = useAppSelector(({ user }) => user);
 
-  useEffect(
-    () => {
-      if (isLoggedIn) navigate('/', { replace: true });
-    },
-      [isLoggedIn]
-  )
+  useEffect(() => {
+    if (!isLoggedIn && localStorage.getItem('token')) {
+      dispatch(hasToken());
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getProfile());
+      navigate('/', { replace: true })
+    }
+  }, [isLoggedIn]);
 
   return (
-    <>
-      <Header />
-      <TransitionGroup>
-        <CSSTransition key={location.key} classNames="fade" timeout={300}>
-          <Routes location={location}>
-            <Route path="/" element={isLoggedIn ? <Navigate to='/' /> : <Navigate to='/sign-in' replace />} />
-            <Route
-              path='/sign-in'
-              element={<LoginPage />}
-            />
-            <Route
-              path='/sign-up'
-              element={<SignupPage />}
-            />
-            <Route
-              path='/'
-              element={<Content />}
-            />
-          </Routes>
-        </CSSTransition>
-      </TransitionGroup>
-    </>
+    <Routes location={location}>
+      <Route path="/" element={isLoggedIn ? <Navigate to='/content' /> : <Navigate to='/sign-in' replace />} />
+      <Route path='/sign-in' element={<LoginPage />} />
+      <Route path='/sign-up' element={<SignupPage />} />
+      <Route path="/content" element={<ProtectedRoute element={<Main />} />} />
+    </Routes>
   );
 }
 

@@ -1,10 +1,10 @@
 import { memo, useState } from 'react';
 import { AuthData, handleSubmitType } from '../interfaces/Interface';
-import Section from "../styles/Section"
 import Form from "../components/Components/Form"
 import Input from '../components/Components/Input';
 import { useAppDispatch } from '../store/hook';
-import { getToken } from '../store/tokenSlice';
+import { getToken } from '../store/userSlice';
+import Header from '../components/Header/Header';
 
 
 const LoginPage = () => {
@@ -24,7 +24,8 @@ const LoginPage = () => {
   };
 
   return (
-    <Section width='100%' height='100vh' minheight='100vh' minwidth='100vw' justifycontent='center' margin='85px 0'>
+    <>
+      <Header />
       <Form
         onSubmit={onSubmit}
         title='Вход'
@@ -51,7 +52,7 @@ const LoginPage = () => {
           togglePasswordVisibility={togglePasswordVisibility}
         />
       </Form>
-    </Section>
+    </>
   )
 }
 

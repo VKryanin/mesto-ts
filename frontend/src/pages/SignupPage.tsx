@@ -1,8 +1,7 @@
 import { memo, useState } from 'react';
-
-import Section from "../styles/Section"
 import Form from "../components/Components/Form"
 import Input from '../components/Components/Input';
+import Header from '../components/Header/Header';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
@@ -20,7 +19,8 @@ const SignupPage = () => {
   };
 
   return (
-    <Section width='100%' height='100vh' minheight='100vh' minwidth='100vw' justifycontent='center' margin='85px 0'>
+    <>
+      <Header />
       <Form
         onSubmit={handleSubmit}
         title='Регистрация'
@@ -47,7 +47,7 @@ const SignupPage = () => {
           togglePasswordVisibility={togglePasswordVisibility}
         />
       </Form>
-    </Section>
+    </>
   )
 }
 
