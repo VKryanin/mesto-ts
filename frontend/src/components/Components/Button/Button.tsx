@@ -1,7 +1,7 @@
 import { ElementType } from "react";
-import { ButtonProps } from "../../interfaces/Interface";
+import { ButtonProps } from "../../../interfaces/Interface";
 import cn from 'classnames';
-import '../../styles/ButtonStyle.scss'
+import './ButtonStyle.scss'
 
 const defaultElement = 'button';
 

@@ -34,25 +34,30 @@ type User = {
   avatar: string
 }
 
+type Token = string
+
 const userSlice = createSlice({
   name: 'user/token',
   initialState: {
     user: {} as User,
-    token: null as string | null,
+    token: '' as Token,
     isLoading: false,
     isLoggedIn: false
   },
   reducers: {
     logout: (state) => {
-      state.token = null;
+      state.token = '';
       state.isLoggedIn = false;
       state.user = {} as User;
       localStorage.removeItem('token');
     },
 
     hasToken: (state) => {
-      state.token = localStorage.getItem('token');
-      state.isLoggedIn = true;
+      const token = localStorage.getItem('token');
+      if (token !== null) {
+        state.token = token;
+        state.isLoggedIn = true;
+      }
     }
   },
   extraReducers: (builder) => {
@@ -62,9 +67,6 @@ const userSlice = createSlice({
     builder.addCase(getProfile.fulfilled, (state, { payload }) => {
       state.user = payload.data;
       state.isLoading = false;
-      console.log(payload.data, 1);
-      console.log(state.user, 2);
-      
     })
     builder.addCase(getProfile.rejected, (state, { payload }) => {
       state.isLoading = false;

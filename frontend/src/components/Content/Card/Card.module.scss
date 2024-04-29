@@ -1,0 +1,62 @@
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  @media screen and (max-width:880px) {
+    & {
+      align-self: center;
+    }
+  }
+
+  &Photo {
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 282px;
+    object-fit: cover;
+    object-position: bottom;
+    width: 100%;
+}
+
+  &Info {
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 25px 15px 31px 21px;
+  }
+
+  &Subtitle {
+    margin: 0;
+    color: #000;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 197px;
+}
+
+&LikeWrapper {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+&LikeLikeCount {
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+}

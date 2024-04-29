@@ -1,45 +1,40 @@
 import { memo, useState } from 'react';
-import { AuthData, handleSubmitType } from '../interfaces/Interface';
-import Form from "../components/Components/Form"
-import Input from '../components/Components/Input';
-import { useAppDispatch } from '../store/hook';
-import { getToken } from '../store/userSlice';
-import Header from '../components/Header/Header';
+import Form from "../../components/Components/Form/Form"
+import Input from '../../components/Components/Input/Input';
+import Header from '../../components/Components/Header/Header';
 
-
-const LoginPage = () => {
+const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useAppDispatch();
 
+  const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(getToken({ email, password }))
+
   };
 
   return (
     <>
       <Header />
       <Form
-        onSubmit={onSubmit}
-        title='Вход'
-        buttonText='Войти'
+        onSubmit={handleSubmit}
+        title='Регистрация'
+        buttonText='Зарегистрироваться'
         inputType={['email', 'password']}
-        sub='Не зарегистрированы?'
-        help='Регистрация'
+        sub='Уже есть аккаунт?'
+        help='Вход'
       >
         <Input
           isForm={true}
           type='email'
           placeholder='Email'
           as='input'
-          value={email}
+          value={email || ''}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
         />
         <Input
@@ -47,7 +42,7 @@ const LoginPage = () => {
           type={showPassword ? 'password' : 'text'}
           placeholder='Пароль'
           as='input'
-          value={password}
+          value={password || ''}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           togglePasswordVisibility={togglePasswordVisibility}
         />
@@ -56,4 +51,4 @@ const LoginPage = () => {
   )
 }
 
-export default memo(LoginPage);
+export default memo(SignupPage);

@@ -9,11 +9,11 @@ import {
 import { useAppSelector, useAppDispatch } from '../store/hook';
 import { getProfile, hasToken } from '../store/userSlice';
 
-import LoginPage from '../pages/LoginPage';
-import SignupPage from '../pages/SignupPage';
-import Main from '../pages/Main';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import SignupPage from '../pages/SignupPage/SignupPage';
+import Main from '../pages/Main/Main';
 
-import ProtectedRoute from './Components/ProtectedRoute';
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 
 function App() {
   const location = useLocation();

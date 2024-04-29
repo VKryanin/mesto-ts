@@ -1,16 +1,16 @@
-import styles from './Content.module.scss'
+import Profile from "../../components/Content/Profile/Profile";
+import Header from "../../components/Components/Header/Header";
+import styles from './Main.module.scss'
+
 import { useAppSelector } from "../../store/hook";
 import { CombSpinner } from "react-spinners-kit";
-import Profile from './Profile/Profile';
+import Cards from "../../components/Content/Cards/Cards";
 
-
-
-
-const Content: React.FC = () => {
+export const Main = () => {
   const { user, isLoading } = useAppSelector(({ user }) => user)
-  const { _id, name, email, avatar } = user
   return (
-    <section className={styles.section}>
+    <main>
+      <Header />
       {isLoading
         ? (
           <div className={styles.sectionSpinner}>
@@ -20,11 +20,11 @@ const Content: React.FC = () => {
         : (
           <>
             <Profile />
+            <Cards />
           </>
         )}
-    </section>
-
+    </main>
   )
 }
 
-export default Content;
+export default Main;

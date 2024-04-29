@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom'
 import {
   FormContainer,
-} from '../../styles/Form';
-import Button from './Button';
+} from './FormStyle';
+import Button from '../Button/Button';
 
-import { FormProps } from '../../interfaces/Interface';
+import { FormProps } from '../../../interfaces/Interface';
 
 
 const Form = ({ children, onSubmit, title, buttonText, sub, help }: FormProps) => {
