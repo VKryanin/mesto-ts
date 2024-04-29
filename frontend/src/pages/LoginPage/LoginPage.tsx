@@ -3,9 +3,9 @@ import { AuthData, handleSubmitType } from '../../interfaces/Interface';
 import Form from "../../components/Components/Form/Form"
 import Input from '../../components/Components/Input/Input';
 import { useAppDispatch } from '../../store/hook';
-import { getToken } from '../../store/userSlice';
-import Header from '../../components/Components/Header/Header';
-import Footer from '../../components/Components/Footer/Footer';
+import { getToken } from '../../store/user/userSlice';
+import Header from '../../components/Content/Header/Header';
+import Footer from '../../components/Content/Footer/Footer';
 
 
 const LoginPage = () => {

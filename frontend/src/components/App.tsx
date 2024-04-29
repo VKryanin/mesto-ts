@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 import Main from '../pages/Main/Main';
-import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
+import Header from './Content/Header/Header';
+import Footer from './Content/Footer/Footer';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import SignupPage from '../pages/SignupPage/SignupPage';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 
 import { useAppDispatch, useAppSelector } from '../store/hook';
-import { getProfile, hasToken } from '../store/userSlice';
-import { getCards } from '../store/cardsSlice';
+import { getProfile, hasToken } from '../store/user/userSlice';
+import { getCards } from '../store/cards/cardsSlice';
 
 function App() {
   const { isLoading } = useAppSelector(({ cards }) => cards);

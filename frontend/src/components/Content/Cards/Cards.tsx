@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styles from './Cards.module.scss';
 import { useAppSelector, useAppDispatch } from '../../../store/hook';
-import { getCards } from '../../../store/cardsSlice';
+import { getCards } from '../../../store/cards/cardsSlice';
 import Card from '../Card/Card';
 
 const Cards = () => {

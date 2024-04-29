@@ -1,10 +1,10 @@
 import React from 'react';
 import style from './Header.module.scss'
 import logo from '../../../images/logo.svg'
-import Button from '../Button/Button';
+import Button from '../../Components/Button/Button';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../../store/hook';
-import { logout } from '../../../store/userSlice';
+import { logout } from '../../../store/user/userSlice';
 
 const Header = () => {
   const location = useLocation();

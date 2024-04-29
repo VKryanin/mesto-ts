@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AuthData } from "../interfaces/Interface";
+import { AuthData } from "../../interfaces/Interface";
 import axios from "axios";
 
 const HOST = 'http://localhost:3001';
