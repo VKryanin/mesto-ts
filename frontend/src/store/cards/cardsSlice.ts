@@ -42,7 +42,6 @@ export const changeLikeCardStatus = createAsyncThunk(
           method: 'PUT'
         }
       )
-      console.log('wtf?? ', changeLikee.data.data);
 
       return changeLikee.data.data
     } else {
@@ -56,7 +55,7 @@ export const changeLikeCardStatus = createAsyncThunk(
           method: 'DELETE'
         }
       )
-      console.log('else wtf?? ', changeLikee.data.data);
+
       return changeLikee.data.data
     }
   }
