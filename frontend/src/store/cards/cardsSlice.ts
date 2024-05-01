@@ -90,7 +90,6 @@ const cardsSlice = createSlice({
     },
     selectCard: (state, { payload }) => {
       state.selectedCard = payload
-      console.log(payload);
     },
   },
   extraReducers: (builder) => {
