@@ -24,6 +24,7 @@ function App() {
     if (!isLoggedIn && localStorage.getItem('token')) {
       dispatch(hasToken());
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
