@@ -1,13 +1,10 @@
-import { useEffect } from 'react';
 import styles from './Cards.module.scss';
-import { useAppSelector, useAppDispatch } from '../../../store/hook';
-import { getCards } from '../../../store/cards/cardsSlice';
+import { useAppSelector } from '../../../store/hook';
+
 import Card from '../Card/Card';
 
 const Cards = () => {
-  const { token } = useAppSelector(({ user }) => user);
   const { cards } = useAppSelector(({ cards }) => cards);
-  const dispatch = useAppDispatch()
 
   return (
     <section className={styles.cards}>

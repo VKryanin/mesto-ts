@@ -16,7 +16,7 @@ const Card: React.FC<{ card: CardType }> = ({ card }) => {
   const [isLike, setLike] = useState(false);
   const { showImage } = useAppSelector(({ cards }) => cards)
   const { user, token } = useAppSelector(({ user }) => user);
-  const { _id, name, link, likes, createdAt } = card
+  const { _id, name, link, likes } = card
 
   const dispatch = useAppDispatch();
 

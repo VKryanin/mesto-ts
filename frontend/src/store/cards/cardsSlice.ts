@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import userSlice from "../user/userSlice";
 
 const HOST = 'http://localhost:3001';
 

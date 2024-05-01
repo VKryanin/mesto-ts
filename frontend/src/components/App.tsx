@@ -14,7 +14,7 @@ import { getCards } from '../store/cards/cardsSlice';
 import ImagePopup from './Content/ImagePopup/ImagePopup';
 
 function App() {
-  const { isLoading, showImage } = useAppSelector(({ cards }) => cards);
+  const { showImage } = useAppSelector(({ cards }) => cards);
   const { isLoggedIn, token } = useAppSelector(({ user }) => user);
   const location = useLocation();
   const dispatch = useAppDispatch();
@@ -32,7 +32,7 @@ function App() {
       dispatch(getCards(token))
       navigate('/', { replace: true })
     }
-  }, [isLoggedIn]);
+  }, [dispatch, isLoggedIn, navigate, token]);
 
   return (
     <>
