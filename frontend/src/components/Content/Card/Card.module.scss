@@ -83,4 +83,21 @@
   &ButtonActive {
     background-image: url(../../../images/Black_like.svg);
   }
+
+  &Delete {
+    width: 18px;
+    height: 19px;
+    padding: 0;
+    background: url(../../../images/delete.svg);
+    border: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: opacity .5s ease-in-out;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { changeLikeCardStatus, selectCard, togglePopup } from '../../../store/cards/cardsSlice';
+import { changeLikeCardStatus, deleteCard, selectCard, togglePopup } from '../../../store/cards/cardsSlice';
 import { useAppSelector, useAppDispatch } from '../../../store/hook';
 import styles from './Card.module.scss';
 
@@ -16,7 +16,8 @@ const Card: React.FC<{ card: CardType }> = ({ card }) => {
   const [isLike, setLike] = useState(false);
   const { showImage } = useAppSelector(({ cards }) => cards)
   const { user, token } = useAppSelector(({ user }) => user);
-  const { _id, name, link, likes } = card
+  const { _id, name, link, likes, owner } = card
+  const isOwner = owner === user._id;
 
   const dispatch = useAppDispatch();
 
@@ -39,8 +40,12 @@ const Card: React.FC<{ card: CardType }> = ({ card }) => {
     dispatch(changeLikeCardStatus({
       cardId: _id,
       isLiked: updatedIsLiked,
-      token: token
+      token
     }));
+  }
+
+  const handleDelete = () => {
+    dispatch(deleteCard({cardId: _id, token}))
   }
 
   return (
@@ -66,6 +71,12 @@ const Card: React.FC<{ card: CardType }> = ({ card }) => {
           </p>
         </div>
       </div>
+      {isOwner && (
+        <button
+          className={styles.cardDelete}
+          onClick={handleDelete}
+        ></button>
+      )}
     </li>
   )
 }

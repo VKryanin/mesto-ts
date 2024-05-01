@@ -31,8 +31,6 @@ export const getCards = createAsyncThunk(
 export const changeLikeCardStatus = createAsyncThunk(
   'changeLike',
   async ({ cardId, isLiked, token }: { cardId: string; isLiked: boolean; token: string }) => {
-    console.log('isLiked: ', isLiked);
-
     if (isLiked) {
       const changeLikee = await axios(`${HOST}/cards/${cardId}/likes`,
         {
@@ -64,6 +62,21 @@ export const changeLikeCardStatus = createAsyncThunk(
   }
 )
 
+export const deleteCard = createAsyncThunk(
+  'deleteCard',
+  async ({ cardId, token }: { cardId: string; token: string }) => {
+    const deleteCard = await axios(`${HOST}/cards/${cardId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      method: 'DELETE',
+    })
+
+    return deleteCard.data.message
+  }
+)
+
 const cardsSlice = createSlice({
   name: 'cards/allCards',
   initialState: {
@@ -79,7 +92,6 @@ const cardsSlice = createSlice({
     selectCard: (state, { payload }) => {
       state.selectedCard = payload
       console.log(payload);
-
     },
   },
   extraReducers: (builder) => {
@@ -93,10 +105,13 @@ const cardsSlice = createSlice({
     builder.addCase(changeLikeCardStatus.fulfilled, (state, { payload }) => {
       state.cards = state.cards.map((card: Card) => {
         if (card._id === payload._id) {
-          return payload; // Возвращаем обновленную карточку
+          return payload;
         }
-        return card; // Возвращаем остальные карточки без изменений
+        return card;
       });
+    });
+    builder.addCase(deleteCard.fulfilled, (state, { payload }) => {
+      state.cards = state.cards.filter((card: Card) => card._id !== payload._id);
     });
   }
 })
