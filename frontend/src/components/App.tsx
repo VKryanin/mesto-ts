@@ -11,9 +11,10 @@ import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import { useAppDispatch, useAppSelector } from '../store/hook';
 import { getProfile, hasToken } from '../store/user/userSlice';
 import { getCards } from '../store/cards/cardsSlice';
+import ImagePopup from './Content/ImagePopup/ImagePopup';
 
 function App() {
-  const { isLoading } = useAppSelector(({ cards }) => cards);
+  const { isLoading, showImage } = useAppSelector(({ cards }) => cards);
   const { isLoggedIn, token } = useAppSelector(({ user }) => user);
   const location = useLocation();
   const dispatch = useAppDispatch();
@@ -32,7 +33,6 @@ function App() {
       navigate('/', { replace: true })
     }
   }, [isLoggedIn]);
-  console.log('location: ', location);
 
   return (
     <>
@@ -42,9 +42,10 @@ function App() {
         <Route path='/sign-up' element={<SignupPage />} />
         <Route path="/" element={<ProtectedRoute element={<Main />} />} />
         <Route path="/" element={isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" replace />} />
-        <Route path="*" element={<div>404</div> } />
+        <Route path="*" element={<div>404</div>} />
       </Routes>
       <Footer />
+      {showImage && <ImagePopup />}
     </>
   );
 }
