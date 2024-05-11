@@ -6,6 +6,7 @@ interface AddImagePopupProps {
   type: string;
   buttonText: string;
   onClose: () => void;
+  onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
   children: React.ReactNode;
 }
 
@@ -23,7 +24,7 @@ const PopupWithForm: React.FC<AddImagePopupProps> = (props: AddImagePopupProps) 
         <h2 className={styles.popupTitle}>{props.title}</h2>
         <form
           name={props.type}
-          // onSubmit={props.onSubmit}
+          onSubmit={props.onSubmit}
           className={styles.popupForm}>
           {props.children}
           <button

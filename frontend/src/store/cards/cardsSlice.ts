@@ -14,6 +14,11 @@ type Card = {
   createdAt: string
 }
 
+type NewCard = {
+  name: string,
+  link: string,
+}
+
 export const getCards = createAsyncThunk(
   'cards/getCards',
   async (token: string, thunkAPI) => {
@@ -76,6 +81,19 @@ export const deleteCard = createAsyncThunk(
   }
 )
 
+export const addCard = createAsyncThunk(
+  'cards/addCard',
+  async (newCard: NewCard, thunkAPI) => {
+    const postHeaders = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+      Accept: "*/*",
+    }
+    const response = await axios.post(`${HOST}/cards`, newCard, { headers: postHeaders })
+    return response.data.data
+  }
+)
+
 const cardsSlice = createSlice({
   name: 'cards/allCards',
   initialState: {
@@ -93,13 +111,16 @@ const cardsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    //get cards
     builder.addCase(getCards.pending, (state) => {
       state.isLoading = true;
     })
     builder.addCase(getCards.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.cards = payload;
+      state.cards = payload.reverse();
     });
+
+    //like
     builder.addCase(changeLikeCardStatus.fulfilled, (state, { payload }) => {
       state.cards = state.cards.map((card: Card) => {
         if (card._id === payload._id) {
@@ -108,8 +129,19 @@ const cardsSlice = createSlice({
         return card;
       });
     });
+
+    //delete
     builder.addCase(deleteCard.fulfilled, (state, { payload }) => {
       state.cards = state.cards.filter((card: Card) => card._id !== payload._id);
+    });
+
+    //add card
+    builder.addCase(addCard.pending, (state) => {
+      state.isLoading = true;
+    })
+    builder.addCase(addCard.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.cards.unshift(payload)
     });
   }
 })

@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../store/hook';
+import { useEffect, useRef } from 'react';
+import { useAppDispatch } from '../../../store/hook';
 import { toggleImagePopup } from '../../../store/popups/popupsSlice';
 import PopupWithForm from "../../Components/PopupWithForm/PopupWithForm";
 import styles from './AddImagePopup.module.scss';
+import { addCard } from '../../../store/cards/cardsSlice';
 
 
 const AddImagePopup = () => {
-  const { addImage } = useAppSelector(({ popups }) => popups);
   const dispatch = useAppDispatch()
   const cardName = useRef<HTMLInputElement>(null);
   const cardLink = useRef<HTMLInputElement>(null);
@@ -22,6 +22,18 @@ const AddImagePopup = () => {
     dispatch(toggleImagePopup(false))
   }
 
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault()
+    if (cardName.current && cardLink.current) {
+      dispatch(
+        addCard({
+          name: cardName.current.value,
+          link: cardLink.current.value
+        })
+      );
+    }
+  }
+
   return (
     <PopupWithForm
       id='cards-popup'
@@ -29,6 +41,7 @@ const AddImagePopup = () => {
       type='mesto'
       buttonText='Создать'
       onClose={handleClose}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="place-name-input" className={styles.popupLabel}>
         <input id="place-name-input"
