@@ -12,10 +12,12 @@ import { useAppDispatch, useAppSelector } from '../store/hook';
 import { getProfile, hasToken } from '../store/user/userSlice';
 import { getCards } from '../store/cards/cardsSlice';
 import ImagePopup from './Content/ImagePopup/ImagePopup';
+import AddImagePopup from './Content/AddImagePopup/AddImagePopup';
 
 function App() {
   const { showImage } = useAppSelector(({ cards }) => cards);
   const { isLoggedIn, token } = useAppSelector(({ user }) => user);
+  const { addImage, editProfile, editAvatar } = useAppSelector(({ popups }) => popups)
   const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ function App() {
     if (!isLoggedIn && localStorage.getItem('token')) {
       dispatch(hasToken());
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -47,6 +49,7 @@ function App() {
       </Routes>
       <Footer />
       {showImage && <ImagePopup />}
+      {addImage && <AddImagePopup />}
     </>
   );
 }

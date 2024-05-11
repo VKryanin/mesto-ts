@@ -1,9 +1,13 @@
 import styles from './Profile.module.scss'
 import { useAppSelector, useAppDispatch } from '../../../store/hook';
+import { toggleImagePopup } from '../../../store/popups/popupsSlice';
 
 const Profile = () => {
-  const { user, token, isLoggedIn } = useAppSelector(({ user }) => user)
-  const { email, avatar, name, about } = user
+  const { user, token, isLoggedIn } = useAppSelector(({ user }) => user);
+  const { email, avatar, name, about } = user;
+  const { addImage, editProfile, editAvatar } = useAppSelector(({ popups }) => popups)
+  const dispatch = useAppDispatch()
+  
   return (
     <section className={styles.profile}>
       <div className={styles.profileContainer}>
@@ -37,7 +41,7 @@ const Profile = () => {
         type="button"
         className={`${styles.profileButtonAdd} ${styles.profileButton}`}
         title="Добавить фотографию"
-      // onClick={props.onEditAddPhoto} 
+        onClick={()=> dispatch(toggleImagePopup(!addImage))}
       />
     </section>
   )

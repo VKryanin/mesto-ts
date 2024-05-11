@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer  from './user/userSlice';
 import cardsSlice from "./cards/cardsSlice";
+import popupsSlice from "./popups/popupsSlice";
 
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-    cards: cardsSlice
+    cards: cardsSlice,
+    popups: popupsSlice
   },
   devTools: true
 });
