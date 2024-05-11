@@ -27,4 +27,24 @@
     font-weight: 400;
     visibility: hidden;
   }
+
+  &TextError {
+    box-sizing: border-box;
+    color: red;
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    min-height: 36px;
+    padding-top: 5px;
+    visibility: hidden;
+  }
+
+  &InputTypeVisible {
+    visibility: visible;
+  }
+
+  &Span {
+    margin: 0;
+  }
 }

@@ -1,6 +1,6 @@
 import styles from './Profile.module.scss'
 import { useAppSelector, useAppDispatch } from '../../../store/hook';
-import { toggleImagePopup, toggleProfilePopup } from '../../../store/popups/popupsSlice';
+import { toggleAvatarPopup, toggleImagePopup, toggleProfilePopup } from '../../../store/popups/popupsSlice';
 
 const Profile = () => {
   const { user, token, isLoggedIn } = useAppSelector(({ user }) => user);
@@ -20,7 +20,7 @@ const Profile = () => {
           type="button"
           className={styles.profileAvatarEdit}
           aria-label="Редактировать аватар профиля"
-        // onClick={props.onEditAvatar} 
+          onClick={() => dispatch(toggleAvatarPopup(!editAvatar))}
         />
         <div className={styles.profileInfo}>
           <h1 className={styles.profileTitle}>

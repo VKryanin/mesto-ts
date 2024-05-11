@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AuthData, UpdateData } from "../../interfaces/Interface";
+import { AuthData, UpdateData, UpdateAvatar } from "../../interfaces/Interface";
 import axios from "axios";
 
 const HOST = 'http://localhost:3001';
@@ -47,6 +47,19 @@ export const patchUserData = createAsyncThunk(
       Accept: "*/*",
     }
     const response = await axios.patch(`${HOST}/users/me`, updateData, { headers: postHeaders })
+    return response.data
+  }
+)
+
+export const patchUserPhoto = createAsyncThunk(
+  'user/updateAvatar',
+  async (updateAvatar: UpdateAvatar, thunkAPI) => {
+    const postHeaders = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem('token')}`,
+      Accept: "*/*",
+    }
+    const response = await axios.patch(`${HOST}/users/me/avatar`, updateAvatar, { headers: postHeaders })
     return response.data
   }
 )
@@ -135,6 +148,18 @@ const userSlice = createSlice({
       state.isLoading = false;
     })
     builder.addCase(patchUserData.rejected, (state, { payload }) => {
+      state.isLoading = false;
+    })
+
+    // edit avatar
+    builder.addCase(patchUserPhoto.pending, (state) => {
+      state.isLoading = true;
+    })
+    builder.addCase(patchUserPhoto.fulfilled, (state, { payload }) => {
+      state.user = payload.data;
+      state.isLoading = false;
+    })
+    builder.addCase(patchUserPhoto.rejected, (state, { payload }) => {
       state.isLoading = false;
     })
   }

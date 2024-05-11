@@ -14,6 +14,7 @@ import { getCards } from '../store/cards/cardsSlice';
 import ImagePopup from './Content/ImagePopup/ImagePopup';
 import AddImagePopup from './Content/PopupAddImage/PopupAddImage';
 import PopupEditProfile from './Content/PopupEditProfile/PopupEditProfile';
+import PopupEditAvatar from './Content/PopupEditAvatar/PopupEditAvatar';
 
 function App() {
   const { showImage } = useAppSelector(({ cards }) => cards);
@@ -52,6 +53,7 @@ function App() {
       {showImage && <ImagePopup />}
       {addImage && <AddImagePopup />}
       {editProfile && <PopupEditProfile />}
+      {editAvatar && <PopupEditAvatar />}
     </>
   );
 }
