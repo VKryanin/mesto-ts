@@ -25,14 +25,14 @@ const PopupEditAvatar = () => {
       onClose={handleClose}
       onSubmit={handleSubmit}
       id='avatar-popup'
-      title='Обновить аватар'
+      title='Update avatar'
       type='user-avatar'
-      buttonText='Сохранить' >
+      buttonText='Save' >
       <label htmlFor="avatar-input" className={styles.popupLabel}>
         <input name="avatar"
           className={styles.popupInput}
           id="avatar"
-          placeholder="Введите ссылку на аватар"
+          placeholder="Enter your avatar link"
           ref={avatarRef}
           type="url"
           minLength={2}

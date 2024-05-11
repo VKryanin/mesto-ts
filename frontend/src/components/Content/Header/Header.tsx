@@ -18,12 +18,12 @@ const Header = () => {
   return (
     <header className={style.header}>
       <img className={style.headerLogo} src={logo as string} alt='Mesto Russia' />
-      {location.pathname === '/sign-in' && (<Button secondary className={style.headerButton} as={Link} to='/sign-up'>Регистрация</Button>)}
-      {location.pathname === '/sign-up' && (<Button secondary className={style.headerButton} as={Link} to='/sign-in'>Войти</Button>)}
+      {location.pathname === '/sign-in' && (<Button secondary className={style.headerButton} as={Link} to='/sign-up'>Sign up</Button>)}
+      {location.pathname === '/sign-up' && (<Button secondary className={style.headerButton} as={Link} to='/sign-in'>Sign In</Button>)}
       {isLoggedIn &&
         <div className={style.headerAuth}>
           <p>{user.email}</p>
-          <Button primary type="submit" as='button' onClick={() => handleLogout()}>Выйти</Button>
+          <Button primary type="submit" as='button' onClick={() => handleLogout()}>Log out</Button>
         </div>
       }
     </header>

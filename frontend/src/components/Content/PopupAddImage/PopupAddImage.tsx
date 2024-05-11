@@ -37,9 +37,9 @@ const AddImagePopup = () => {
   return (
     <PopupWithForm
       id='cards-popup'
-      title='Новое место'
+      title='New Mesto'
       type='mesto'
-      buttonText='Создать'
+      buttonText='Create'
       onClose={handleClose}
       onSubmit={handleSubmit}
     >
@@ -49,7 +49,7 @@ const AddImagePopup = () => {
           className={styles.popupInput}
           name="placename"
           required
-          placeholder="Название"
+          placeholder="Name"
           minLength={2}
           maxLength={30}
           ref={cardName} />
@@ -61,7 +61,7 @@ const AddImagePopup = () => {
           className={styles.popupInput}
           name="placeimage"
           ref={cardLink}
-          placeholder="Ссылка на картинку"
+          placeholder="Link to picture"
           required
         />
         <span className={styles.popupInputError} />

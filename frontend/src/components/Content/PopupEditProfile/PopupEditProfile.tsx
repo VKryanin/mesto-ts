@@ -33,9 +33,9 @@ const PopupEditProfile = () => {
       onClose={handleClose}
       onSubmit={handleSubmit}
       id='profile-popup'
-      title='Редактировать профиль'
+      title='Edit profile'
       type='profile'
-      buttonText='Сохранить'
+      buttonText='Save'
     >
       <label htmlFor="username-input" className={styles.popupLabel}>
         <input
@@ -44,7 +44,7 @@ const PopupEditProfile = () => {
           className={styles.popupInput}
           name="username"
           required
-          placeholder="Ваше имя"
+          placeholder="Your name"
           minLength={2}
           maxLength={40}
           value={name || ''}
@@ -59,7 +59,7 @@ const PopupEditProfile = () => {
           className={styles.popupInput}
           name="description"
           required
-          placeholder="Ваш род занятий"
+          placeholder="About you"
           minLength={2}
           maxLength={200}
           value={description || ''}
