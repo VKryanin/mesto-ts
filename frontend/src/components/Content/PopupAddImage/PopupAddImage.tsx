@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useAppDispatch } from '../../../store/hook';
 import { toggleImagePopup } from '../../../store/popups/popupsSlice';
 import PopupWithForm from "../../Components/PopupWithForm/PopupWithForm";
-import styles from './AddImagePopup.module.scss';
+import styles from './PopupAddImage.module.scss';
 import { addCard } from '../../../store/cards/cardsSlice';
 
 

@@ -4,7 +4,7 @@ interface AddImagePopupProps {
   id: string;
   title: string;
   type: string;
-  buttonText: string;
+  buttonText: string | null;
   onClose: () => void;
   onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
   children: React.ReactNode;
@@ -30,7 +30,7 @@ const PopupWithForm: React.FC<AddImagePopupProps> = (props: AddImagePopupProps) 
           <button
             type="submit"
             className={styles.popupSubmitButton}
-            aria-label="Сохранить">{props.buttonText || 'Сохранить'}</button>
+            aria-label="Сохранить">{props.buttonText}</button>
         </form>
       </div>
     </div>

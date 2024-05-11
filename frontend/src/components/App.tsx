@@ -12,7 +12,8 @@ import { useAppDispatch, useAppSelector } from '../store/hook';
 import { getProfile, hasToken } from '../store/user/userSlice';
 import { getCards } from '../store/cards/cardsSlice';
 import ImagePopup from './Content/ImagePopup/ImagePopup';
-import AddImagePopup from './Content/AddImagePopup/AddImagePopup';
+import AddImagePopup from './Content/PopupAddImage/PopupAddImage';
+import PopupEditProfile from './Content/PopupEditProfile/PopupEditProfile';
 
 function App() {
   const { showImage } = useAppSelector(({ cards }) => cards);
@@ -50,6 +51,7 @@ function App() {
       <Footer />
       {showImage && <ImagePopup />}
       {addImage && <AddImagePopup />}
+      {editProfile && <PopupEditProfile />}
     </>
   );
 }

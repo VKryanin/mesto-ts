@@ -68,6 +68,11 @@ export type AuthData = {
   password: string;
 }
 
+export type UpdateData = {
+  name: string;
+  about: string;
+}
+
 export type handleSubmitType = (e: React.FormEvent<HTMLFormElement>, authData: AuthData) => void;
 
 export interface ProtectedRouteProps {
