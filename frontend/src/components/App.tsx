@@ -15,11 +15,12 @@ import ImagePopup from './Content/ImagePopup/ImagePopup';
 import AddImagePopup from './Content/PopupAddImage/PopupAddImage';
 import PopupEditProfile from './Content/PopupEditProfile/PopupEditProfile';
 import PopupEditAvatar from './Content/PopupEditAvatar/PopupEditAvatar';
+import InfoTooltip from './Content/InfoTooltip/InfoTooltip';
 
 function App() {
   const { showImage } = useAppSelector(({ cards }) => cards);
-  const { isLoggedIn, token } = useAppSelector(({ user }) => user);
-  const { addImage, editProfile, editAvatar } = useAppSelector(({ popups }) => popups)
+  const { isLoggedIn, token, message, imgPath } = useAppSelector(({ user }) => user);
+  const { addImage, editProfile, editAvatar, Info } = useAppSelector(({ popups }) => popups)
   const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ function App() {
       {addImage && <AddImagePopup />}
       {editProfile && <PopupEditProfile />}
       {editAvatar && <PopupEditAvatar />}
+      {Info && <InfoTooltip />}
     </>
   );
 }

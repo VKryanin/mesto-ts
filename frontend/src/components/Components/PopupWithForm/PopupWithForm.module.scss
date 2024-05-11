@@ -32,6 +32,20 @@
     }
   }
 
+  &Message {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+
+    & h2 {
+      margin: 32px auto 0;
+      text-align: center;
+    }
+  }
+
   &Opened {
     visibility: visible;
     opacity: 1;
@@ -43,7 +57,10 @@
   }
 
   &Image {
-    background: rgba(0, 0, 0, 0.9);
+    max-height: 75vh;
+    max-width: 75vw;
+    margin: 0 auto;
+    object-fit: contain;
   }
 
   &CloseForm {

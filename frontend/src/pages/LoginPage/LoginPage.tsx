@@ -1,10 +1,12 @@
 import { memo, useState } from 'react';
 import Form from "../../components/Components/Form/Form"
 import Input from '../../components/Components/Input/Input';
-import { useAppDispatch } from '../../store/hook';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { getToken } from '../../store/user/userSlice';
+import { toggleInfoTooltipPopup } from '../../store/popups/popupsSlice';
 
 const LoginPage = () => {
+  const { message, imgPath } = useAppSelector(({ user }) => user)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -16,18 +18,21 @@ const LoginPage = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(getToken({ email, password }))
+    dispatch(
+      getToken({ email, password })
+    );
+    dispatch(toggleInfoTooltipPopup({ isShow: true, message }))
   };
 
   return (
     <>
       <Form
         onSubmit={onSubmit}
-        title='Вход'
-        buttonText='Войти'
+        title='Sign in'
+        buttonText='Login'
         inputType={['email', 'password']}
-        sub='Не зарегистрированы?'
-        help='Регистрация'
+        sub='Not registered?'
+        help='Registration'
       >
         <Input
           isForm={true}
@@ -40,7 +45,7 @@ const LoginPage = () => {
         <Input
           isForm={true}
           type={showPassword ? 'password' : 'text'}
-          placeholder='Пароль'
+          placeholder='Password'
           as='input'
           value={password}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}

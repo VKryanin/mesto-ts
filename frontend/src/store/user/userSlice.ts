@@ -1,14 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AuthData, UpdateData, UpdateAvatar } from "../../interfaces/Interface";
 import axios from "axios";
+import trueImagePath from '../../images/True.svg';
+import falseImagePath from '../../images/False.svg';
 
 const HOST = 'http://localhost:3001';
 
 export const getToken = createAsyncThunk(
   'token/getToken',
   async (authData: AuthData, thunkAPI) => {
-    const response = await axios.post(`${HOST}/signin`, authData);
-    return response.data.token;
+    try {
+      const response = await axios.post(`${HOST}/signin`, authData);
+      return response.data.token;
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Unknown error occurred');
+    }
   }
 )
 
@@ -33,10 +39,14 @@ export const createUser = createAsyncThunk(
       'Content-Type': 'application/json',
       Accept: "*/*",
     };
-    const register = await axios.post(`${HOST}/signup`, authData, { headers: postHeaders })
-    return register.data
+    try {
+      const register = await axios.post(`${HOST}/signup`, authData, { headers: postHeaders })
+      return register.data;
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Unknown error occurred');
+    }
   }
-)
+);
 
 export const patchUserData = createAsyncThunk(
   'user/updateUser',
@@ -82,7 +92,8 @@ const userSlice = createSlice({
     isLoading: false,
     isLoggedIn: false,
     email: '' as string,
-
+    message: '' as string,
+    imgPath: '',
   },
   reducers: {
     logout: (state) => {
@@ -108,6 +119,7 @@ const userSlice = createSlice({
     builder.addCase(getProfile.fulfilled, (state, { payload }) => {
       state.user = payload.data;
       state.isLoading = false;
+
     })
     builder.addCase(getProfile.rejected, (state, { payload }) => {
       state.isLoading = false;
@@ -120,9 +132,14 @@ const userSlice = createSlice({
     builder.addCase(createUser.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.email = payload;
+      state.message = 'You have successfully registered!'
+      state.imgPath = trueImagePath
+
     });
-    builder.addCase(createUser.rejected, (state) => {
+    builder.addCase(createUser.rejected, (state, payload) => {
       state.isLoading = false;
+      state.message = `Registration error: ${payload.error.message}`;
+      state.imgPath = falseImagePath
     });
 
     //token
@@ -134,9 +151,13 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.isLoggedIn = true;
       localStorage.setItem('token', payload);
+      state.message = 'Welcome!'
+      state.imgPath = trueImagePath
     })
-    builder.addCase(getToken.rejected, (state, { payload }) => {
+    builder.addCase(getToken.rejected, (state, payload) => {
       state.isLoading = false;
+      state.message = `Authorization error: ${payload.error.message}`;
+      state.imgPath = falseImagePath
     })
 
     // edit user

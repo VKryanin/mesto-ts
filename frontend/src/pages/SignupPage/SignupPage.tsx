@@ -1,11 +1,13 @@
 import { memo, useState } from 'react';
 import Form from "../../components/Components/Form/Form"
 import Input from '../../components/Components/Input/Input';
-import { useAppDispatch } from '../../store/hook';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { createUser } from '../../store/user/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { toggleInfoTooltipPopup } from '../../store/popups/popupsSlice';
 
 const SignupPage = () => {
+  const { message, imgPath } = useAppSelector(({ user }) => user)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
@@ -19,21 +21,18 @@ const SignupPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(createUser({ email, password }))
-      .then((res) => {
-        navigate('/sign-in');
-      }
-      )
+    dispatch(toggleInfoTooltipPopup({ isShow: true, message }))
   };
 
   return (
     <>
       <Form
         onSubmit={handleSubmit}
-        title='Регистрация'
-        buttonText='Зарегистрироваться'
+        title='Sign up'
+        buttonText='Sign up'
         inputType={['email', 'password']}
-        sub='Уже есть аккаунт?'
-        help='Вход'
+        sub='Already have an account?'
+        help='Sign in'
       >
         <Input
           isForm={true}
@@ -46,7 +45,7 @@ const SignupPage = () => {
         <Input
           isForm={true}
           type={showPassword ? 'password' : 'text'}
-          placeholder='Пароль'
+          placeholder='Password'
           as='input'
           value={password || ''}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}

@@ -1,4 +1,53 @@
 .popup {
+  opacity: 0;
+  transition: visibility .6s, opacity .6s ease;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+
+  &Opened {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  &Container {
+    margin: 0;
+    padding: 34px 36px 37px 36px;
+    position: relative;
+    max-width: 430px;
+    min-height: 200px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+
+    @media screen and (max-width: 644px) {
+      & {
+        padding: 25px 22px 25px 22px;
+        max-width: 282px;
+      }
+    }
+  }
+
+  &Message {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+
+    & h2 {
+      margin: 32px auto 0;
+      text-align: center;
+    }
+  }
+
   &Label {
     margin: 0 0 5px 0;
 
@@ -46,5 +95,27 @@
 
   &Span {
     margin: 0;
+  }
+
+  &Close {
+    position: absolute;
+    transform: translate(50%, -50%);
+    top: -24px;
+    right: -24px;
+    width: 32px;
+    cursor: pointer;
+    transition: opacity .5s ease;
+
+    &:hover {
+      opacity: .7;
+    }
+  }
+
+  &Image {
+    background: rgba(0, 0, 0, 0.9);
+    max-height: 75vh;
+    max-width: 75vw;
+    margin: 0 auto;
+    object-fit: contain;
   }
 }
