@@ -1,13 +1,15 @@
 import { memo, useState } from 'react';
 import Form from "../../components/Components/Form/Form"
 import Input from '../../components/Components/Input/Input';
-import Header from '../../components/Content/Header/Header';
-import Footer from '../../components/Content/Footer/Footer';
+import { useAppDispatch } from '../../store/hook';
+import { createUser } from '../../store/user/userSlice';
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -16,7 +18,11 @@ const SignupPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    dispatch(createUser({ email, password }))
+      .then((res) => {
+        navigate('/sign-in');
+      }
+      )
   };
 
   return (

@@ -15,14 +15,26 @@ export const getToken = createAsyncThunk(
 export const getProfile = createAsyncThunk(
   'user/getUser',
   async (_, thunkAPI) => {
-    const token = localStorage.getItem('token'); // Получаем токен из localStorage
+    const token = localStorage.getItem('token');
     const postHeaders = {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`, // Используем токен в запросе
+      Authorization: `Bearer ${token}`,
       Accept: "*/*",
     };
     const response = await axios.get(`${HOST}/users/me`, { headers: postHeaders });
     return response.data;
+  }
+)
+
+export const createUser = createAsyncThunk(
+  'user/createUser',
+  async (authData: AuthData, thunkAPI) => {
+    const postHeaders = {
+      'Content-Type': 'application/json',
+      Accept: "*/*",
+    };
+    const register = await axios.post(`${HOST}/signup`, authData, { headers: postHeaders })
+    return register.data
   }
 )
 
@@ -42,7 +54,9 @@ const userSlice = createSlice({
     user: {} as User,
     token: '' as Token,
     isLoading: false,
-    isLoggedIn: false
+    isLoggedIn: false,
+    email: '' as string,
+
   },
   reducers: {
     logout: (state) => {
@@ -58,7 +72,7 @@ const userSlice = createSlice({
         state.token = token;
         state.isLoggedIn = true;
       }
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getProfile.pending, (state) => {
@@ -71,6 +85,17 @@ const userSlice = createSlice({
     builder.addCase(getProfile.rejected, (state, { payload }) => {
       state.isLoading = false;
     })
+
+    builder.addCase(createUser.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(createUser.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.email = payload;
+    });
+    builder.addCase(createUser.rejected, (state) => {
+      state.isLoading = false;
+    });
 
     builder.addCase(getToken.pending, (state) => {
       state.isLoading = true;
