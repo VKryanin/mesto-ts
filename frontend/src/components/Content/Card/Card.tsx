@@ -1,16 +1,8 @@
 import { useState, useEffect } from 'react';
 import { changeLikeCardStatus, deleteCard, selectCard, togglePopup } from '../../../store/cards/cardsSlice';
 import { useAppSelector, useAppDispatch } from '../../../store/hook';
+import { CardType } from '../../../interfaces/Interface';
 import styles from './Card.module.scss';
-
-type CardType = {
-  _id: string,
-  name: string,
-  link: string,
-  owner: string,
-  likes: string[],
-  createdAt: string
-}
 
 const Card: React.FC<{ card: CardType }> = ({ card }) => {
   const [isLike, setLike] = useState(false);

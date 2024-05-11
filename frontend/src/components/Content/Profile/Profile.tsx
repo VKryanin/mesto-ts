@@ -3,8 +3,8 @@ import { useAppSelector, useAppDispatch } from '../../../store/hook';
 import { toggleAvatarPopup, toggleImagePopup, toggleProfilePopup } from '../../../store/popups/popupsSlice';
 
 const Profile = () => {
-  const { user, token, isLoggedIn } = useAppSelector(({ user }) => user);
-  const { email, avatar, name, about } = user;
+  const { user,  } = useAppSelector(({ user }) => user);
+  const { avatar, name, about } = user;
   const { addImage, editProfile, editAvatar } = useAppSelector(({ popups }) => popups)
   const dispatch = useAppDispatch()
 

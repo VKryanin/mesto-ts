@@ -3,7 +3,7 @@ import Form from "../../components/Components/Form/Form"
 import Input from '../../components/Components/Input/Input';
 import { useAppDispatch } from '../../store/hook';
 import { createUser } from '../../store/user/userSlice';
-import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');

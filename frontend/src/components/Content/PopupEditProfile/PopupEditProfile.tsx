@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hook';
 import PopupWithForm from '../../Components/PopupWithForm/PopupWithForm';
 import styles from '../PopupAddImage/PopupAddImage.module.scss'
@@ -19,8 +19,6 @@ const PopupEditProfile = () => {
     evt.preventDefault()
     dispatch(patchUserData({ name, about: description }))
   }
-
-
 
   function handleName(event: React.ChangeEvent<HTMLInputElement>) {
     setName(event.target.value);

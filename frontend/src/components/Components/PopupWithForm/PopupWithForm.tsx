@@ -1,15 +1,5 @@
 import styles from './PopupWithForm.module.scss';
-
-interface AddImagePopupProps {
-  id: string;
-  title: string;
-  type: string;
-  buttonText: string | null;
-  onClose: () => void;
-  onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
-  children: React.ReactNode;
-}
-
+import { AddImagePopupProps } from '../../../interfaces/Interface';
 
 const PopupWithForm: React.FC<AddImagePopupProps> = (props: AddImagePopupProps) => {
 

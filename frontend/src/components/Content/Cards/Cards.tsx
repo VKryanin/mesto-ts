@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../store/hook';
 import Card from '../Card/Card';
 
 const Cards = () => {
-  const { cards, isLoading } = useAppSelector(({ cards }) => cards);
+  const { cards } = useAppSelector(({ cards }) => cards);
   return (
     <section className={styles.cards}>
       <ul className={styles.cardsList}>

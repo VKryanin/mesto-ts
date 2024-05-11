@@ -84,3 +84,22 @@ export interface ProtectedRouteProps {
   element: React.ComponentType;
 }
 
+export type CardType = {
+  _id: string,
+  name: string,
+  link: string,
+  owner: string,
+  likes: string[],
+  createdAt: string
+}
+
+export interface AddImagePopupProps {
+  id: string;
+  title: string;
+  type: string;
+  buttonText: string | null;
+  onClose: () => void;
+  onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
+  children: React.ReactNode;
+}
+

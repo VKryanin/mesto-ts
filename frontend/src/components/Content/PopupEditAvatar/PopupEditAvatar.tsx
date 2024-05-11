@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../store/hook';
+import { useRef } from 'react';
+import { useAppDispatch } from '../../../store/hook';
 import PopupWithForm from '../../Components/PopupWithForm/PopupWithForm';
 import styles from '../PopupAddImage/PopupAddImage.module.scss';
 import { toggleAvatarPopup } from '../../../store/popups/popupsSlice';

@@ -4,14 +4,11 @@ import Input from '../../components/Components/Input/Input';
 import { useAppDispatch } from '../../store/hook';
 import { getToken } from '../../store/user/userSlice';
 
-
-
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useAppDispatch();
-
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
