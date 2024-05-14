@@ -6,11 +6,12 @@ import { toggleInfoTooltipPopup } from '../../../store/popups/popupsSlice';
 
 const InfoTooltip = () => {
   const { message, imgPath } = useAppSelector(({ user }) => user);
+  const { Info } = useAppSelector(({ popups }) => popups)
   const dispatch = useAppDispatch()
 
   return (
     <div
-      className={`${styles.popup} ${styles.popupOpened}`}
+      className={Info ? `${styles.popup} ${styles.popupOpened}` : `${styles.popup}`}
       onClick={() => dispatch(toggleInfoTooltipPopup({ Info: false }))}
     >
       <div className={`${styles.popupContainer} ${styles.popupMessage}`}>

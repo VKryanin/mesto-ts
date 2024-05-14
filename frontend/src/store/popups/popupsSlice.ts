@@ -20,7 +20,6 @@ const popupSlice = createSlice({
   reducers: {
     toggleImagePopup: (state, { payload }) => {
       state.addImage = payload
-      console.log('state.addImage', state.addImage);
     },
     toggleProfilePopup: (state, { payload }) => {
       state.editProfile = payload

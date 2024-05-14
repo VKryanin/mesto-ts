@@ -90,7 +90,8 @@ export type CardType = {
   link: string,
   owner: string,
   likes: string[],
-  createdAt: string
+  createdAt: string,
+
 }
 
 export interface AddImagePopupProps {
@@ -101,5 +102,6 @@ export interface AddImagePopupProps {
   onClose: () => void;
   onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void;
   children: React.ReactNode;
+  isOpen: boolean;
 }
 

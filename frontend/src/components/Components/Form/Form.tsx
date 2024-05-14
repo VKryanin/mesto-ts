@@ -4,7 +4,7 @@ import {
 } from './FormStyle';
 import Button from '../Button/Button';
 
-import { FormProps } from '../../../interfaces/Interface';
+import { FormProps } from '../../utils/Interface';
 
 
 const Form = ({ children, onSubmit, title, buttonText, sub, help }: FormProps) => {

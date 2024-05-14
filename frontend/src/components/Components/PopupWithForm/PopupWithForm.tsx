@@ -1,11 +1,15 @@
 import styles from './PopupWithForm.module.scss';
-import { AddImagePopupProps } from '../../../interfaces/Interface';
+import { AddImagePopupProps } from '../../utils/Interface';
 
 const PopupWithForm: React.FC<AddImagePopupProps> = (props: AddImagePopupProps) => {
-
+  
   return (
-    <div className={`${styles.popup} ${styles.popupOpened}`} id={props.id}>
-      <div className={styles.popupContainer}>
+    <div
+      className={props.isOpen
+        ? `${styles.popup} ${styles.popupOpened}`
+        : `${styles.popup}`} id={props.id}
+    >
+      <div className={styles.popupContainer} >
         <button
           type="button"
           className={styles.popupCloseForm}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { changeLikeCardStatus, deleteCard, selectCard, togglePopup } from '../../../store/cards/cardsSlice';
 import { useAppSelector, useAppDispatch } from '../../../store/hook';
-import { CardType } from '../../../interfaces/Interface';
+import { CardType } from '../../utils/Interface';
 import styles from './Card.module.scss';
 
 const Card: React.FC<{ card: CardType }> = ({ card }) => {

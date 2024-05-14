@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AuthData, UpdateData, UpdateAvatar } from "../../interfaces/Interface";
+import { AuthData, UpdateData, UpdateAvatar } from "../../components/utils/Interface";
 import axios from "axios";
 import trueImagePath from '../../images/True.svg';
 import falseImagePath from '../../images/False.svg';
@@ -94,6 +94,7 @@ const userSlice = createSlice({
     email: '' as string,
     message: '' as string,
     imgPath: '',
+    isSuccess: true,
   },
   reducers: {
     logout: (state) => {
@@ -119,10 +120,11 @@ const userSlice = createSlice({
     builder.addCase(getProfile.fulfilled, (state, { payload }) => {
       state.user = payload.data;
       state.isLoading = false;
-
+      state.isSuccess = true;
     })
     builder.addCase(getProfile.rejected, (state, { payload }) => {
       state.isLoading = false;
+      state.isSuccess = false;
     })
 
     //registration
@@ -133,13 +135,14 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.email = payload;
       state.message = 'You have successfully registered!'
-      state.imgPath = trueImagePath
-
+      state.imgPath = trueImagePath;
+      state.isSuccess = true;
     });
     builder.addCase(createUser.rejected, (state, payload) => {
       state.isLoading = false;
       state.message = `Registration error: ${payload.error.message}`;
       state.imgPath = falseImagePath
+      state.isSuccess = false;
     });
 
     //token
@@ -167,9 +170,15 @@ const userSlice = createSlice({
     builder.addCase(patchUserData.fulfilled, (state, { payload }) => {
       state.user = payload.data;
       state.isLoading = false;
+      state.message = `Profile updated`;
+      state.imgPath = trueImagePath
+      state.isSuccess = true;
     })
-    builder.addCase(patchUserData.rejected, (state, { payload }) => {
+    builder.addCase(patchUserData.rejected, (state, payload) => {
       state.isLoading = false;
+      state.message = `Something went wrong: ${payload.error.message}`;
+      state.imgPath = falseImagePath;
+      state.isSuccess = false;
     })
 
     // edit avatar
@@ -178,10 +187,17 @@ const userSlice = createSlice({
     })
     builder.addCase(patchUserPhoto.fulfilled, (state, { payload }) => {
       state.user = payload.data;
+      state.message = `Avatar updated`;
+      state.imgPath = trueImagePath
       state.isLoading = false;
+      state.isSuccess = true;
     })
-    builder.addCase(patchUserPhoto.rejected, (state, { payload }) => {
+    builder.addCase(patchUserPhoto.rejected, (state, payload) => {
       state.isLoading = false;
+      state.isSuccess = false;
+      state.message = `Something went wrong: ${payload.error.message}`;
+      state.imgPath = falseImagePath;
+
     })
   }
 })

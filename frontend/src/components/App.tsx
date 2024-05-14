@@ -26,6 +26,8 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("Hi, I'm using image upload via link to save memory on the server. ^^,");
+
     if (!isLoggedIn && localStorage.getItem('token')) {
       dispatch(hasToken());
     }
@@ -51,11 +53,16 @@ function App() {
         <Route path="*" element={<div>404</div>} />
       </Routes>
       <Footer />
-      {showImage && <ImagePopup />}
-      {addImage && <AddImagePopup />}
-      {editProfile && <PopupEditProfile />}
-      {editAvatar && <PopupEditAvatar />}
-      {Info && <InfoTooltip />}
+      <ImagePopup />
+      <AddImagePopup />
+      <PopupEditProfile />
+      <PopupEditAvatar />
+      <InfoTooltip />
+      {/* {showImage && <ImagePopup />} */}
+      {/* {addImage && <AddImagePopup />} */}
+      {/* {editProfile && <PopupEditProfile />} */}
+      {/* {editAvatar && <PopupEditAvatar />} */}
+      {/* {Info && <InfoTooltip />} */}
     </>
   );
 }
