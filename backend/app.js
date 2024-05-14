@@ -11,7 +11,10 @@ const { requestLogger, errorLogger } = require('./midlwares/logger');
 const routes = require('./routes');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://mesto.vk-port.dev',
+  credentials: true,
+}));
 
 const { PORT } = require('./utils/config');
 
