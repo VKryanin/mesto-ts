@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const HOST = 'http://localhost:3001';
+const HOST = 'https://mesto-api.vk-port.dev';
 
 type Cards = Card[];
 

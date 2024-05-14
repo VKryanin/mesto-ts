@@ -4,7 +4,7 @@ import axios from "axios";
 import trueImagePath from '../../images/True.svg';
 import falseImagePath from '../../images/False.svg';
 
-const HOST = 'http://localhost:3001';
+const HOST = 'https://mesto-api.vk-port.dev';
 
 export const getToken = createAsyncThunk(
   'token/getToken',
